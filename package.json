@@ -1,0 +1,29 @@
+{
+  "name": "bonfire",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Salman Tariq Mirza",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bookshelf": "^0.10.4",
+    "express": "^4.16.1",
+    "knex": "^0.13.0",
+    "pg": "^7.3.0",
+    "pug": "^2.0.0-rc.4",
+    "ramda": "^0.24.1",
+    "superagent": "^3.6.2"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^3.6.0"
+  }
+}
