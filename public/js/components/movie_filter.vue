@@ -5,7 +5,7 @@
       option(value='actors') Actors
       option(value='title') Title
       option(value='genre') Genre
-    <div></div>
+    div
       input(v-if='isTitleFilter', type='text', v-model='title' @change='onTitleFilterChange')
       select(v-if='isActorFilter' v-model='actorId' @change='onActorFilterChange')
         option(value='0') Select Actor to filter by
