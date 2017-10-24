@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    document: ['babel-polyfill', './public/js/main.js'],
+    main: ['babel-polyfill', './public/js/main.js'],
   },
   output: {
     path: path.resolve(__dirname, './public/js/dist'),

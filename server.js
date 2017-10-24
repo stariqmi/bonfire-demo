@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 
 // Routers
 const moviesRouter = require('./routes/movies')
+const actorsRouter = require('./routes/actors')
 
 const port = process.env.PORT || 3030
 
@@ -15,5 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 
 app.use(moviesRouter)
+app.use(actorsRouter)
+
+app.get('/', (req, res) => res.render('main'))
 
 app.listen(port, () => console.log(`Server running on port ${port}`))

@@ -1,3 +1,4 @@
+const R = require('ramda')
 const Movie = require('./models').Movie
 const Actor = require('./models').Actor
 
@@ -5,12 +6,12 @@ const findMoviesByActor = (id) => {
   return Actor.where({ id })
     .fetch({ withRelated: ['movies', 'movies.actors' ]})
     .then((actor) => {
-      return actor.toJSON().movies
+      return R.filter(movie => movie.added_to_collection, actor.toJSON().movies)
     })
 }
 
 const findMoviesByGenre = (genre) => {
-  return Movie.where({ genre })
+  return Movie.where({ genre, added_to_collection: true })
     .fetchAll({ withRelated: ['actors' ]})
     .then((movies) => {
       return movies.toJSON()
@@ -18,7 +19,7 @@ const findMoviesByGenre = (genre) => {
 }
 
 const findMovieByTitle = (title) => {
-  return Movie.where({ title })
+  return Movie.where({ title, added_to_collection: true })
       .fetchAll({ withRelated: ['actors' ]})
       .then((movies) => {
         return movies.toJSON()
@@ -26,12 +27,17 @@ const findMovieByTitle = (title) => {
 }
 
 module.exports.fetchAll = () => {
-  return Movie.fetchAll({ withRelated: ['actors'] })
+  return Movie.where({}).orderBy('id', 'ASC').fetchAll({ withRelated: ['actors'] })
 }
 
 module.exports.addToHomeCollection = (id) => {
   return Movie.forge({ id })
     .save({ added_to_collection: true }, { patch: true })
+}
+
+module.exports.removeFromHomeCollection = (id) => {
+  return Movie.forge({ id })
+    .save({ added_to_collection: false }, { patch: true })
 }
 
 module.exports.search = ({ searchBy, query }) => {

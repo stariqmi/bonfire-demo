@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Movie App
+    link(rel='stylesheet', href='/css/main.css')
+  body
+    #app
+      .movies
+        h1 All Movies
+        Movie(v-for='movie in movies', :movie='movie', :show-buttons='true')
+      .home-collection
+        h1 My Home Collection
+        movie-filter(:actors='actors')
+        Movie(v-for='movie in homeCollection', :movie='movie', :show-buttons='false')
+  script(src='/js/dist/main.build.js')
